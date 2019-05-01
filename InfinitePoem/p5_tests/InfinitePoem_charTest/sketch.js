@@ -6,7 +6,8 @@ let sz = 8;
 let geneArray = [];
 let geneIndex = 0;
 
-let once = true;
+let once = false;
+let mBuff = 3; //mouse click range/buffer
 
 let obit; //1772 char (not well cleaned) 13600 needed, so repeated
 // let obitArray = [];
@@ -64,15 +65,39 @@ function setup() {
 
 function draw() {
   background(255);
-  // if (once) {
+  if (!once) {
+    for (let i = 0; i < geneArray.length; i ++){
+      // geneArray[i].goHome();
+      geneArray[i].display();
+    }
   //   console.log(geneArray);
   //
   //   once = false;
   // }
   //- - - - - - text movement test
-  for (let i = 0; i < geneArray.length; i ++){
-    geneArray[i].goHome();
-    geneArray[i].display();
+  }else{
+    for (let i = 0; i < geneArray.length; i ++){
+      geneArray[i].goHome();
+      geneArray[i].display();
+    }
+  }
+
+}
+
+function mousePressed(){
+  //to trigger animation
+  if (!once) once = !once;
+  //click test
+  // console.log(mouseX + " / " + mouseY);
+  for (let i = 0; i < geneArray.length; i++){
+    if (mouseX >= (geneArray[i].x - mBuff) && mouseX <= (geneArray[i].x + mBuff) &&
+    mouseY >= (geneArray[i].y - mBuff) && mouseY <= (geneArray[i].y + mBuff)){
+    // mouseY == int(geneArray[i].y)){
+      console.log(geneArray[i])
+      textSize(30);
+      fill(0);
+      text(geneArray[i].c, width/2, height/2);
+    }
   }
 
 }
