@@ -1,7 +1,8 @@
 let defSize = 9;
 let defCol = "black";
 let defSpeed = 1;
-let defStep = 30;
+let defStep = 30; //about 13 secs
+// let defStep = 100; //way slow but good for performance? 45 secs
 
 
 class Letter {
@@ -43,8 +44,12 @@ class Letter {
       this.clock -= 1;
     }
   }
-  interact() {
-
+  poem() {
+    console.log(this.char);
+    // textSize(30);
+    // fill(0);
+    // text(this.char, width/2, height/2);
+    return(this.char);
   }
 
 }

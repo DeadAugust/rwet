@@ -8,6 +8,7 @@ let geneIndex = 0;
 
 let once = false;
 let mBuff = 3; //mouse click range/buffer
+let poem = ' ';
 
 let obit; //1772 char (not well cleaned) 13600 needed, so repeated
 // let obitArray = [];
@@ -15,6 +16,7 @@ let obit; //1772 char (not well cleaned) 13600 needed, so repeated
 function preload(){
   marg = loadImage('margaretObit_grey.jpg');
   obit = loadStrings('margaretObit.txt');
+  avara = loadFont('assets/Avara.otf'); //https://fontlibrary.org/en/font/avara
 }
 
 
@@ -28,6 +30,7 @@ function setup() {
   obit = join(obit, "");
   textAlign(CENTER);
   textSize(8);
+  // textFont(avara); //too slow
 
   //- - - - - - - - greyscale portrait
 
@@ -65,6 +68,9 @@ function setup() {
 
 function draw() {
   background(255);
+  textSize(30);
+  fill(0);
+  text(poem, width/2, height/3);
   if (!once) {
     for (let i = 0; i < geneArray.length; i ++){
       // geneArray[i].goHome();
@@ -93,10 +99,11 @@ function mousePressed(){
     if (mouseX >= (geneArray[i].x - mBuff) && mouseX <= (geneArray[i].x + mBuff) &&
     mouseY >= (geneArray[i].y - mBuff) && mouseY <= (geneArray[i].y + mBuff)){
     // mouseY == int(geneArray[i].y)){
-      console.log(geneArray[i])
-      textSize(30);
-      fill(0);
-      text(geneArray[i].c, width/2, height/2);
+      // console.log(geneArray[i])
+      // textSize(30);
+      // fill(0);
+      // text(geneArray[i].c, width/2, height/2);
+      poem = geneArray[i].poem();
     }
   }
 
