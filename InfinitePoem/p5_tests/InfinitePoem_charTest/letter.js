@@ -15,9 +15,12 @@ class Letter {
     this.y = int(parameters.y || random(1, height));
     this.homeX = parameters.hX;
     this.homeY = parameters.hY;
-    this.farX = abs(this.homeX - this.x);
-    this.farY = abs(this.homeY - this.y);
-    this.step = 50; //100 moves to home?
+    this.farX = this.homeX - this.x;
+    this.farY = this.homeY - this.y;
+    // this.farX = abs(this.homeX - this.x);
+    // this.farY = abs(this.homeY - this.y);
+    // this.step = 50; //100 moves to home?
+    this.step = int(random(16, 24)) * int(random(2, 4));
     this.clock = this.step; //to count down
     //this.poem  //from python JSON
   }
@@ -32,6 +35,13 @@ class Letter {
     text(this.char, this.x, this.y);
   }
   goHome() {
+    //trying counter now
+    if (this.clock != 0){
+      this.x = this.x + (this.farX / this.step);
+      this.y = this.y + (this.farY / this.step);
+      this.clock -= 1;
+    }
+
     //flicker issues (esp. with 0)
     /*
     if (this.x > this.homeX) {

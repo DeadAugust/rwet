@@ -100,11 +100,11 @@ function draw() {
     geneArray[i].goHome();
     geneArray[i].display();
   }
-  
-  for (let i = 0; i < 100; i++){
-    console.log(geneArray[i].x + " X " + geneArray[i].homeX);
-    console.log(geneArray[i].y + " Y " + geneArray[i].homeY);
-
-  }
+  // 
+  // for (let i = 0; i < 100; i++){
+  //   console.log(geneArray[i].x + " X " + geneArray[i].homeX);
+  //   console.log(geneArray[i].y + " Y " + geneArray[i].homeY);
+  //
+  // }
 
 }
