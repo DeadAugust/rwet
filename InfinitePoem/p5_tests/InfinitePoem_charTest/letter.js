@@ -1,6 +1,7 @@
-let defSize = 8;
+let defSize = 9;
 let defCol = "black";
 let defSpeed = 1;
+let defStep = 30;
 
 
 class Letter {
@@ -20,7 +21,7 @@ class Letter {
     // this.farX = abs(this.homeX - this.x);
     // this.farY = abs(this.homeY - this.y);
     // this.step = 50; //100 moves to home?
-    this.step = int(random(16, 24)) * int(random(2, 4));
+    this.step = int(random(defStep - (defStep/5), defStep + (defStep/5))) * int(random(2, 5)); //little more natural
     this.clock = this.step; //to count down
     //this.poem  //from python JSON
   }
@@ -41,42 +42,6 @@ class Letter {
       this.y = this.y + (this.farY / this.step);
       this.clock -= 1;
     }
-
-    //flicker issues (esp. with 0)
-    /*
-    if (this.x > this.homeX) {
-      this.x = int(this.x - (this.farX / this.step));
-    } else if (this.x < this.homeX) {
-      this.x = int(this.x + (this.farX / this.step));
-    }
-    if (this.y > this.homeY) {
-      this.y = int(this.y - (this.farY / this.step));
-    } else if (this.y < this.homeY) {
-      this.y = int(this.y + (this.farY / this.step));
-    }
-    */
-
-    //slightly correct, but way small
-    /*
-    let goX;
-    let goY;
-    if (this.x > this.homeX) {
-      goX = (this.x - this.homeX) / 2;
-    } else if (this.x < this.homeX) {
-      goX = (this.homeX - this.x) / 2;
-    } else {
-      goX = this.x;
-    }
-    if (this.y > this.homeY) {
-      goY = (this.y - this.homeY) / 2;
-    } else if (this.y < this.homeY) {
-      goY = (this.homeY - this.y) / 2;
-    } else {
-      goY = this.y;
-    }
-    this.x = goX;
-    this.y = goY;
-    */
   }
   interact() {
 
