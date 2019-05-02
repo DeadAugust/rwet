@@ -197,8 +197,13 @@ function mousePressed(){
       // text(geneArray[i].c, width/2, height/2);
       poem = geneArray[i].item;
       poemSize = (300/poem.length);
-      poemX = random(width/5, width - width/5);
-      poemY = random(height/5, height - height/5)
+      // poemX = mouseX - abs(width-mouseX);
+      // poemY = mouseY - abs(height-mouseY);
+      poemX = mouseX + random(-50, 50);
+      poemY = mouseY + random(-50, 50);
+
+      // poemX = random(width/5, width - width/5);
+      // poemY = random(height/5, height - height/5);
 
     }
   }
