@@ -40,13 +40,16 @@ function preload(){
 }
 
 
-
+let cnv;
 function setup() {
   // createCanvas(600, 816);
   // let w = int((100/136) * windowHeight);
   let w = int((100/164) * windowHeight);
 
-  createCanvas(w, windowHeight);
+  cnv = createCanvas(w, windowHeight).parent("myCanvas");
+  cnv.style("margin-left", "auto");
+  cnv.style("margin-right", "auto");
+
   marg.loadPixels();
   corpsus = margJSON['text'];
   textAlign(CENTER);

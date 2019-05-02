@@ -2,7 +2,8 @@ let defSize = 8;
 let defCol = "black";
 let defSpeed = 1;
 // let defStep = 30; //about 13 secs
-let defStep = 100; //way slow but good for performance? 45 secs
+let defStep = 75;
+// let defStep = 100; //way slow but good for performance? 45 secs
 
 
 class Letter {
