@@ -9,13 +9,10 @@ class Letter {
   constructor(parameters) {
     // constructor(c, s, col, spd, x, y, hX, hY){
     this.char = parameters.c;
-    this.item = parameters.item;
     this.size = parameters.s || defSize;
     this.grey = parameters.grey || defCol;
     this.col = parameters.col || defCol;
     this.speed = parameters.spd || defSpeed;
-    // this.x = Math.floor(Math.random() * Math.floor(this.w)); //wasn't working b/c outside of p5 setup/draw...
-    // this.y = Math.floor(Math.random() * Math.floor(this.h));
     this.x = int(parameters.x || random(1, width));
     this.y = int(parameters.y || random(1, height));
     this.homeX = parameters.hX;
@@ -27,7 +24,11 @@ class Letter {
     // this.step = 50; //100 moves to home?
     this.step = int(random(defStep - (defStep/5), defStep + (defStep/5))) * int(random(2, 5)); //little more natural
     this.clock = this.step; //to count down
-    // this.poem = parameters.item //from python JSON
+    //this.poem  //from python JSON
+  }
+  move() {
+
+
   }
   display() {
     fill(this.grey);
@@ -43,18 +44,12 @@ class Letter {
       this.clock -= 1;
     }
   }
-  jitter() {
-    this.x = this.x + random(-2, 2);
-    this.y = this.y + random(-2, 2)
-
-  }
   poem() {
-    // console.log(this.char);
+    console.log(this.char);
     // textSize(30);
     // fill(0);
     // text(this.char, width/2, height/2);
-
-    // return(this.item);
+    return(this.char);
   }
 
 }

@@ -1,8 +1,8 @@
-let defSize = 9;
+let defSize = 8;
 let defCol = "black";
 let defSpeed = 1;
-let defStep = 30; //about 13 secs
-// let defStep = 100; //way slow but good for performance? 45 secs
+// let defStep = 30; //about 13 secs
+let defStep = 100; //way slow but good for performance? 45 secs
 
 
 class Letter {
@@ -20,8 +20,8 @@ class Letter {
     this.y = int(parameters.y || random(1, height));
     this.homeX = parameters.hX;
     this.homeY = parameters.hY;
-    this.farX = this.homeX - this.x;
-    this.farY = this.homeY - this.y;
+    // this.farX = this.homeX - this.x;
+    // this.farY = this.homeY - this.y;
     // this.farX = abs(this.homeX - this.x);
     // this.farY = abs(this.homeY - this.y);
     // this.step = 50; //100 moves to home?
@@ -46,6 +46,8 @@ class Letter {
   jitter() {
     this.x = this.x + random(-2, 2);
     this.y = this.y + random(-2, 2)
+    this.farX = this.homeX - this.x;
+    this.farY = this.homeY - this.y;
 
   }
   poem() {

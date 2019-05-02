@@ -8,6 +8,7 @@ let geneArray = [];
 let geneIndex = 0;
 
 let once = false;
+let final = false;
 let mBuff = 3; //mouse click range/buffer
 let poem = ' ';
 
@@ -18,6 +19,11 @@ let corpsus;
 //ALL HAIL CORS-ANYWHERE: https://cors-anywhere.herokuapp.com/
 let cors = "https://cors-anywhere.herokuapp.com/"
 let api = "https://infinite-poem-api.herokuapp.com"
+
+//poem
+let poemX = 0;
+let poemY = 0;
+let poemSize = 30;
 
 function preload(){
   marg = loadImage('margGrey.png', go1, error);
@@ -125,9 +131,11 @@ function setup() {
 
 function draw() {
   background(255);
-  textSize(30);
-  fill(0);
-  text(poem, 2* width/3, height/3);
+  // push();
+  // textSize(poemSize);
+  // fill(0);
+  // text(poem, poemX, poemY);
+  // pop();
   // rect(100, 100, 100, 100)
   if (!once) {
     for (let i = 0; i < geneArray.length; i ++){
@@ -142,12 +150,23 @@ function draw() {
   //   once = false;
   // }
   //- - - - - - text movement test
-  }else{
+}else if (final){
     for (let i = 0; i < geneArray.length; i ++){
       geneArray[i].goHome();
       geneArray[i].display();
     }
-  }
+  }else{
+      for (let i = 0; i < geneArray.length; i ++){
+        geneArray[i].jitter();
+        geneArray[i].display();
+      }
+    }
+  //after for legibility
+  push();
+  textSize(poemSize);
+  fill(0);
+  text(poem, poemX, poemY);
+  pop();
 
 }
 function go1(){
@@ -157,55 +176,6 @@ function go1(){
 
 function start(){ //on JSON receive
   console.log('poem ready');
-  // marg.loadPixels();
-  // corpsus = margJSON['text'];
-  // let w = int((100/136) * windowHeight); //such issues...
-  // console.log(w);
-  // let h = int(windowHeight);
-  // console.log(h);
-
-  // console.log(corpsus);
-  // textFont(avara); //too slow
-
-  //- - - - - - - - greyscale portrait
-/*
-  //setting up array
-  let o = -1;
-  for (let x = 0; x < marg.width; x++){
-    // console.log((width / marg.width) * (x + 1));
-    // console.log(h)
-    for (let y = 0; y <marg.height; y++){
-      let index = ((y * marg.width) + x) * 4;
-      // console.log(index)
-      let g = marg.pixels[index+2]; //greyscale, but y tho
-      g += 50; //just to sharpen a little? forgot up was lighter...
-      if (o < corpsus.length - 1){ //needed still?
-        o++;
-      } else {
-        o = 0;
-      }
-      // console.log(o);
-      let char = corpsus[o]; //letter from orig text in JSON
-      let item = margJSON[o];
-      // console.log((width / marg.width) * (x + 1));
-      let parameters = {
-        c: char ,
-        item: item,
-        grey: g,
-        hX: (w / marg.width) * (x + 1),
-        hY: (h / marg.height) * (y + 1),
-        w: w,
-        h: h
-      }
-      // console.log(parameters)
-
-      let letter = new Letter(parameters);
-      geneArray.push(letter);
-
-      greyIndex++;
-    }
-  }
-  */
 }
 
 function mousePressed(){
@@ -222,13 +192,18 @@ function mousePressed(){
       // textSize(30);
       // fill(0);
       // text(geneArray[i].c, width/2, height/2);
-      poem = geneArray[i].poem();
+      poem = geneArray[i].item;
+      poemSize = (300/poem.length);
+      poemX = random(width/5, width - width/5);
+      poemY = random(height/5, height - height/5)
+
     }
   }
 }
 
 function keyPressed(){ //to erase
-  if (keyCode = "32") poem = ""
+  if (keyCode == "32") poem = "";
+  if (keyCode == ENTER) final = !final;
 }
 
 function got(){
