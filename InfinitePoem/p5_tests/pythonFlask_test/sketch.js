@@ -1,3 +1,12 @@
+let socket = io('/');
+
+// Listen for confirmation of connection
+socket.on('connect', function () {
+  console.log("Connected");
+});
+
+
+
 // let marg; //100 x 136
 let marg; //100 x 164
 
