@@ -192,6 +192,8 @@ function draw() {
       letterArray[i].display();
     }
   }else if (state == 54){ //loop -- 6
+    clickOn = true;
+
     if (!once){
       // newImage(margTest);
       scaledImage(beer);
@@ -250,7 +252,6 @@ function draw() {
     firstJitter = false; //just so first
   }else if (state == 55){ //one loop one letter -- 7
     // poemHeader.show();
-    clickOn = true;
     if (!once){
       let o = -1;
       for (let x = 0; x < width; x += pixelStep){
@@ -264,7 +265,8 @@ function draw() {
           let item = margJSON[o];
           let parameters = {
             c: char ,
-            item: item
+            item: item,
+            grey: 200
             // grey: g,
             // hX: (width / marg.width) * (x + 1),
             // hY: (height / marg.height) * (y + 1)
